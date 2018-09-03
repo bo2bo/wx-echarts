@@ -1,0 +1,7 @@
+<view class="container">
+  <ec-canvas id="mychart-dom-stack" canvas-id="mychart-stack" ec="{{ ecStack }}"></ec-canvas>
+  <view class='pieContainer'>
+    <ec-canvas id="mychart-dom-give" canvas-id="mychart-give" ec="{{ ecGive }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-need" canvas-id="mychart-need" ec="{{ ecNeed }}"></ec-canvas>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+#mychart-dom-stack {
+  position: absolute;
+  top: 0;
+  bottom: 40%;
+  left: 0;
+  right: 0;
+}
+
+#mychart-dom-give {
+  position: absolute;
+  top: 60%;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+}
+
+#mychart-dom-need {
+  position: absolute;
+  top: 60%;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+}

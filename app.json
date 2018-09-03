@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/struct/struct",
+    "pages/jumpLine/jumpLine",
+    "pages/dragLine/dragLine",
+    "pages/logs/logs",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "img/icons/bar.png",
+        "iconPath": "img/icons/bar.png",
+        "pagePath": "pages/struct/struct",
+        "text": "柱/饼图"
+      },
+      {
+        "selectedIconPath": "img/icons/line.png",
+        "iconPath": "img/icons/line.png",
+        "pagePath": "pages/jumpLine/jumpLine",
+        "text": "线图"
+      },
+      {
+        "selectedIconPath": "img/icons/pie.png",
+        "iconPath": "img/icons/pie.png",
+        "pagePath": "pages/dragLine/dragLine",
+        "text": "拖拽"
+      }
+    ]
+  }
+}
