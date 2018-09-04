@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/dragLine/dragLine",
+    "pages/add/add",
     "pages/struct/struct",
     "pages/jumpLine/jumpLine",
-    "pages/dragLine/dragLine",
     "pages/logs/logs",
     "pages/index/index"
   ],
@@ -34,6 +35,12 @@
         "iconPath": "img/icons/pie.png",
         "pagePath": "pages/dragLine/dragLine",
         "text": "拖拽"
+      },
+      {
+        "selectedIconPath":"img/icons/scatter.png",
+        "iconPath": "img/icons/scatter.png",
+        "pagePath": "pages/add/add",
+        "text": "添点"
       }
     ]
   }

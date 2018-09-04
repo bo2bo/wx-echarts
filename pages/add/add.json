@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "拖拽",
+  "navigationBarTitleText": "添点",
   "usingComponents": {
     "ec-canvas": "../../ec-canvas/ec-canvas"
   }

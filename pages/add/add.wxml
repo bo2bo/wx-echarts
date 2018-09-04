@@ -1,0 +1,3 @@
+<view class="container">
+  <ec-canvas id="mychart-dom-add" canvas-id="mychart-add" ec="{{ ec }}" bind:init="echartInit"></ec-canvas>
+</view>

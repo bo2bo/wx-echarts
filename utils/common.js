@@ -1,3 +1,4 @@
+import * as echarts from './../ec-canvas/echarts.min';
 var jumpIntervalMap = new Object();
 var common = {
   lineColoObj: {
@@ -701,6 +702,143 @@ var common = {
       }
     }
     return datasObj;
+  },
+  ////////     拖拽功能    //////////
+  // 折线图拖拽
+  drugOption: function (param) {
+    var option = {
+      title: {
+        text: param.title,
+        left: 'left',
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      tooltip: {
+        triggerOn: 'none',
+        formatter: function (param) {
+          if (typeof param.data[0] === "string") {
+            return '指标: ' + param.seriesName + "<br>" + '时间: ' + param.data[0] + '<br/>数据: ' +
+              param.data[1].toFixed(2);
+          } else {
+            return '指标: ' + param.seriesName + "<br>" + '时间: ' + param.name + '<br/>数据: ' +
+              param.data[1];
+          }
+        }
+      },
+      grid: common.gridConfig,
+      xAxis: common.xAxisConfig,
+      yAxis: common.yAxisConfig,
+      dataZoom: common.dataZoomConfig,
+      graphic: [],
+      series: function () {
+        var seriesData = [];
+        for (var z = 0; z < param.data.length; z++) {
+          var seriesObj = {
+            id: param.data[z].id,
+            name: param.data[z].name,
+            type: 'line',
+            smooth: true,
+            symbolSize: 20,
+            data: param.data[z].data,
+          };
+          seriesData.push(seriesObj);
+        }
+        return seriesData;
+      }()
+    };
+    param.dom.setOption(option, true);
+  },
+  // 拖拽函数
+  drugFun: function (param) {
+    debugger;
+    var graphicObj = [];
+    setTimeout(function () {
+      for (var i = 0; i < param.data.length; i++) {
+        var dataObj = {};
+        graphic: echarts.util.map(param.data[i].data, function (item, dataIndex) {
+          // if (dataIndex > LENGTH) {
+          dataObj = {
+            type: 'circle',
+            position: param.dom.convertToPixel('grid', item),
+            shape: {
+              cx: 0,
+              cy: 0,
+              r: 10
+            },
+            invisible: false,
+            draggable: true,
+            ondrag: echarts.util.curry(common.onPointDragging, param.data[i], dataIndex, param.dom),
+            onmousemove: echarts.util.curry(common.showTooltip, i, dataIndex, param.dom),
+            onmouseout: echarts.util.curry(common.hideTooltip, dataIndex, param.dom),
+            z: 100
+          };
+          // } else {
+          //     dataObj = {
+          //         type: 'circle',
+          //         position: myChart.convertToPixel('grid', item),
+          //         shape: {
+          //             cx: 0,
+          //             cy: 0,
+          //             r: 10
+          //         },
+          //         invisible: false,
+          //         draggable: true,
+          //         ondrag: echarts.util.curry(common.onPointDragging, param.data[i], dataIndex, param.dom),
+          //         onmousemove: echarts.util.curry(common.showTooltip, i, dataIndex, param.dom),
+          //         onmouseout: echarts.util.curry(common.hideTooltip, dataIndex, param.dom),
+          //         z: 100
+          //     };
+          // }
+          graphicObj.push(dataObj);
+        })
+      }
+    }, 0);
+    setTimeout(function () {
+      param.dom.setOption({
+        graphic: graphicObj
+      });
+    }, 100);
+  },
+  // tooltip函数
+  showTooltip: function (index, dataIndex, dom) {
+    dom.dispatchAction({
+      type: 'showTip',
+      seriesIndex: index,
+      dataIndex: dataIndex
+    });
+  },
+  hideTooltip: function (dataIndex, dom) {
+    dom.dispatchAction({
+      type: 'hideTip'
+    });
+  },
+  // point拖拽过程的函数
+  onPointDragging: function (line, dataIndex, dom) {
+    var dateData = line.data[dataIndex][0];
+    this.position[0] = dom.convertToPixel('grid', line.data[dataIndex])[0];
+    line.data[dataIndex] = dom.convertFromPixel('grid', this.position);
+    line.data[dataIndex][0] = dateData;
+    dom.setOption({
+      series: [{
+        id: line.id,
+        data: line.data
+      }]
+    });
+  },
+  updatePosition: function (param) {
+    var graphicObj = [];
+    for (var j = 0; j < param.data.length; j++) {
+      graphic: echarts.util.map(param.data[j].data, function (item, dataIndex) {
+        var dataObj = {
+          position: param.dom.convertToPixel('grid', item)
+        };
+        graphicObj.push(dataObj);
+      })
+    }
+    param.dom.setOption({
+      graphic: graphicObj
+    });
   }
 };
 module.exports = {
