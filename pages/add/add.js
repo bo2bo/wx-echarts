@@ -58,25 +58,25 @@ function initChart(canvas, width, height) {
       data: data
     }]
   };
-  var zr = chart.getZr();
-  zr.on('click', function(params) {
-    var pointInPixel = [params.offsetX, params.offsetY];
-    var pointInGrid = chart.convertFromPixel('grid', pointInPixel);
-    if (chart.containPixel('grid', pointInPixel)) {
-      data.push(pointInGrid);
-      chart.setOption({
-        series: [{
-          id: 'a',
-          data: data
-        }]
-      });
-    }
-  });
+  // var zr = chart.getZr();
+  // zr.on('click', function(params) {
+  //   var pointInPixel = [params.offsetX, params.offsetY];
+  //   var pointInGrid = chart.convertFromPixel('grid', pointInPixel);
+  //   if (chart.containPixel('grid', pointInPixel)) {
+  //     data.push(pointInGrid);
+  //     chart.setOption({
+  //       series: [{
+  //         id: 'a',
+  //         data: data
+  //       }]
+  //     });
+  //   }
+  // });
 
-  zr.on('mousemove', function(params) {
-    var pointInPixel = [params.offsetX, params.offsetY];
-    zr.setCursorStyle(chart.containPixel('grid', pointInPixel) ? 'copy' : 'default');
-  });
+  // zr.on('mousemove', function(params) {
+  //   var pointInPixel = [params.offsetX, params.offsetY];
+  //   zr.setCursorStyle(chart.containPixel('grid', pointInPixel) ? 'copy' : 'default');
+  // });
   chart.setOption(option);
   return chart;
 }

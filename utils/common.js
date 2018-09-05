@@ -751,7 +751,6 @@ var common = {
   },
   // 拖拽函数
   drugFun: function (param) {
-    debugger;
     var graphicObj = [];
     setTimeout(function () {
       for (var i = 0; i < param.data.length; i++) {
