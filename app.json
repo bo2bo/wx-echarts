@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/dragLine/dragLine",
     "pages/add/add",
+    "pages/dragLine/dragLine",
     "pages/struct/struct",
     "pages/jumpLine/jumpLine",
     "pages/logs/logs",
